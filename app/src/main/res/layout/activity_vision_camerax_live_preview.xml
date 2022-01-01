@@ -12,6 +12,14 @@
       android:layout_height="match_parent"
       android:layout_above="@id/control"/>
 
+  <com.google.mlkit.vision.demo.kotlin.RectangleOverlayView
+      android:id="@+id/rectangleOverlay"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_centerInParent="true"
+      app:hole_height="220dp"
+      app:hole_width="342dp" />
+
   <com.google.mlkit.vision.demo.GraphicOverlay
       android:id="@+id/graphic_overlay"
       android:layout_width="match_parent"
