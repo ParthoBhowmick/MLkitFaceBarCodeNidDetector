@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <declare-styleable name="RectangleOverlayViewPay">
+        <attr name="hole_height" format="dimension" />
+        <attr name="hole_width" format="dimension" />
+        <attr name="error_state" format="integer">
+            <flag name="white" value="0" />
+            <flag name="red" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

@@ -87,6 +87,7 @@ class CameraXLivePreviewActivity :
   private var lensFacing = CameraSelector.LENS_FACING_FRONT
   private var cameraSelector: CameraSelector? = null
   private lateinit var captureBtn: ImageView
+  private lateinit var rectangleOverlayView: RectangleOverlayView
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -120,6 +121,7 @@ class CameraXLivePreviewActivity :
     spinner.adapter = dataAdapter
     spinner.onItemSelectedListener = this
     val facingSwitch = findViewById<ToggleButton>(R.id.facing_switch)
+    rectangleOverlayView = findViewById(R.id.rectangleOverlay)
     facingSwitch.setOnCheckedChangeListener(this)
     ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application))
       .get(CameraXViewModel::class.java)
@@ -259,16 +261,22 @@ class CameraXLivePreviewActivity :
               override fun captureImage() {
                 captureBtn.visibility = View.VISIBLE
                 captureBtn.setOnClickListener {
-                  previewView?.bitmap?.let { it1 ->
+                  val rect = rectangleOverlayView.getBoundingBox()
+                  val bitmap = previewView?.bitmap?.let { it1 ->
+                    Bitmap.createBitmap(
+                      it1,
+                      rect.left, rect.top, rect.width(), rect.height())
+                  }
+                  if (bitmap != null) {
                     getImageUriForBitmap(this@CameraXLivePreviewActivity,
-                      it1
+                      bitmap
                     )
                   }
                 }
               }
 
               override fun noFace() {
-                captureBtn.visibility = GONE
+                //captureBtn.visibility = GONE
               }
             }
           }
