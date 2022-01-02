@@ -208,11 +208,9 @@ abstract class VisionProcessorBase<T>(context: Context) : VisionImageProcessor {
     if (isShutdown) {
       return
     }
-    val bitmap: Bitmap? = null
 //    if (!PreferenceUtils.isCameraLiveViewportEnabled(graphicOverlay.context)) {
 //      bitmap = BitmapUtils.getBitmap(image)
 //    }
-
     requestDetectInImage(
       InputImage.fromMediaImage(image.image!!, image.imageInfo.rotationDegrees),
       graphicOverlay,

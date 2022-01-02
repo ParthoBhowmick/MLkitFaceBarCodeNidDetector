@@ -26,6 +26,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.View
+import android.view.View.VISIBLE
 import android.widget.AdapterView
 import android.widget.AdapterView.GONE
 import android.widget.AdapterView.OnItemSelectedListener
@@ -259,7 +260,7 @@ class CameraXLivePreviewActivity :
             val faceDetectorOptions = PreferenceUtils.getFaceDetectorOptions(this)
             object : FaceDetectorProcessor(this@CameraXLivePreviewActivity, faceDetectorOptions) {
               override fun captureImage() {
-                captureBtn.visibility = View.VISIBLE
+                captureBtn.visibility = VISIBLE
                 captureBtn.setOnClickListener {
                   val rect = rectangleOverlayView.getBoundingBox()
                   val bitmap = previewView?.bitmap?.let { it1 ->
@@ -276,7 +277,7 @@ class CameraXLivePreviewActivity :
               }
 
               override fun noFace() {
-                //captureBtn.visibility = GONE
+                captureBtn.visibility = GONE
               }
             }
           }
